@@ -20,7 +20,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 /// <summary>
 /// Provides Program class.
 /// </summary>
-static partial class Program
+static class Program
 {
 
   /// <summary>
