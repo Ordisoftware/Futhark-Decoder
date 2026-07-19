@@ -506,8 +506,11 @@
     <PackageReference Include="SmartAnalyzers.MultithreadingAnalyzer">
       <Version>1.1.31</Version>
     </PackageReference>
+    <PackageReference Include="SourceGear.sqlite3">
+      <Version>3.53.3</Version>
+    </PackageReference>
     <PackageReference Include="sqlite-net-pcl">
-      <Version>[1.9.172, 1.9.172]</Version>
+      <Version>1.11.285</Version>
     </PackageReference>
     <PackageReference Include="ErrorProne.NET.CoreAnalyzers">
       <Version>0.1.2</Version>
@@ -535,10 +538,10 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="SQLitePCLRaw.core">
-      <Version>3.0.3</Version>
+      <Version>3.0.4</Version>
     </PackageReference>
-    <PackageReference Include="SQLitePCLRaw.provider.dynamic_cdecl">
-      <Version>3.0.3</Version>
+    <PackageReference Include="SQLitePCLRaw.provider.e_sqlite3">
+      <Version>3.0.4</Version>
     </PackageReference>
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe">
       <Version>6.1.2</Version>
