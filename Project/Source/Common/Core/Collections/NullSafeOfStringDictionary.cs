@@ -1,4 +1,5 @@
-﻿/// <license>
+﻿using System.Linq;
+/// <license>
 /// This file is part of Ordisoftware Core Library.
 /// Copyright 2004-2026 Olivier Rogier.
 /// See www.ordisoftware.com for more information.
@@ -79,31 +80,29 @@ static class NullSafeOfStringDictionaryHelper
     try
     {
       collection.Clear();
-      foreach ( string line in File.ReadAllLines(filePath) )
-        if ( !line.IsCommented() )
+      foreach ( string line in File.ReadAllLines(filePath).Where(line => !line.IsCommented()) )
+      {
+        var parts = line.SplitNoEmptyLines(separator);
+        int length = parts.Length;
+        if ( length > 0 )
         {
-          var parts = line.SplitNoEmptyLines(separator);
-          if ( parts.Length == 1 )
+          string key = parts[0];
+          if ( length == 1 )
           {
-            string key = parts[0].Trim();
             if ( !collection.ContainsKey(key) )
               collection.Add(key, string.Empty);
           }
           else
-          if ( parts.Length == 2 )
+          if ( length == 2 )
           {
-            string key = parts[0].Trim();
             if ( !collection.ContainsKey(key) )
               collection.Add(key, parts[1].Trim());
           }
           else
-          if ( parts.Length > 2 )
-          {
-            string key = parts[0].Trim();
-            if ( !collection.ContainsKey(key) )
-              collection.Add(key, parts.Skip(1).Join(separator));
-          }
+          if ( length > 2 && !collection.ContainsKey(key) )
+            collection.Add(key, parts.Skip(1).Select(part => part.Trim()).Join(separator));
         }
+      }
       return true;
     }
     catch ( FileNotFoundException )
